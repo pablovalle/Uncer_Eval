@@ -3,30 +3,38 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Robotics Participant Background Form</title>
+  <title>Robotics Participant Form</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 2rem;
       background-color: #f4f4f9;
+      margin: 0;
+      padding: 0;
     }
-    h1 {
-      text-align: center;
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
     }
-    form {
+    .login-container, .form-container {
       background: #fff;
       padding: 2rem;
       border-radius: 8px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 800px;
+      display: none;
+    }
+    h1, h2 {
+      text-align: center;
     }
     label {
       display: block;
       margin-top: 1rem;
       font-weight: bold;
     }
-    input[type="text"], select, textarea {
+    input[type="text"], input[type="password"], select, textarea {
       width: 100%;
       padding: 0.5rem;
       margin-top: 0.25rem;
@@ -64,88 +72,133 @@
     button:hover {
       background-color: #0056b3;
     }
+    .error {
+      color: red;
+      margin-top: 1rem;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
-  <h1>Participant Background Form</h1>
-  <form name="participant-form" method="POST" data-netlify="true">
-    <label>Affiliation:</label>
-    <select name="affiliation" id="affiliation-select">
-      <option value="industry">Industry</option>
-      <option value="academia">Academia</option>
-      <option value="other">Other</option>
-    </select>
-    <input type="text" name="affiliation_other" id="affiliation-other" placeholder="If other, please specify" style="display: none;" />
+  <div class="container">
+    <div class="login-container" id="login-section">
+      <h2>Login</h2>
+      <form id="login-form">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required />
 
-    <label>Job Role:</label>
-    <select name="job_role" id="job-role-select">
-      <option>PhD Student</option>
-      <option>Postdoctoral Researcher</option>
-      <option>Researcher / Scientist</option>
-      <option>Faculty / Professor</option>
-      <option>R&amp;D Engineer</option>
-      <option>Technical Manager / Lead</option>
-      <option>Other</option>
-    </select>
-    <input type="text" name="job_role_other" id="job-role-other" placeholder="If other, please specify" style="display: none;" />
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required />
 
-    <label>Years of Experience:</label>
-    <select name="experience">
-      <option>0–2 years</option>
-      <option>3–5 years</option>
-      <option>6–10 years</option>
-      <option>11–15 years</option>
-      <option>16+ years</option>
-    </select>
-
-    <label>Areas of Expertise:</label>
-    <div class="checkbox-group">
-      <label><input type="checkbox" name="expertise" value="motion_planning"> Robot motion planning</label>
-      <label><input type="checkbox" name="expertise" value="control"> Control systems</label>
-      <label><input type="checkbox" name="expertise" value="slam"> SLAM / Localization</label>
-      <label><input type="checkbox" name="expertise" value="ml"> Machine learning / AI</label>
-      <label><input type="checkbox" name="expertise" value="hri"> Human-robot interaction</label>
-      <label><input type="checkbox" name="expertise" value="navigation"> Autonomous navigation</label>
-      <label><input type="checkbox" name="expertise" value="manipulation"> Manipulation and grasping</label>
-      <label><input type="checkbox" name="expertise" value="uncertainty"> Uncertainty modeling</label>
-      <label><input type="checkbox" name="expertise" value="software"> Software engineering</label>
-      <label><input type="checkbox" name="expertise" value="testing"> Testing, validation, and safety</label>
-      <label><input type="checkbox" id="expertise-other-check" name="expertise" value="other"> Other</label>
-      <input type="text" name="expertise_other" id="expertise-other" placeholder="If other, please specify" style="display: none;" />
+        <div class="submit-button">
+          <button type="submit">Login</button>
+        </div>
+        <div class="error" id="error-msg"></div>
+      </form>
     </div>
 
-    <label>Familiarity with Uncertainty-Aware Robotics:</label>
-    <select name="familiarity">
-      <option value="1">1 - Not familiar</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="5">5 - Very familiar</option>
-    </select>
+    <div class="form-container" id="form-section">
+      <h1>Participant Background Form</h1>
+      <form name="participant-form" method="POST" data-netlify="true">
+        <label>Affiliation:</label>
+        <select name="affiliation" id="affiliation-select">
+          <option value="industry">Industry</option>
+          <option value="academia">Academia</option>
+          <option value="other">Other</option>
+        </select>
+        <input type="text" name="affiliation_other" id="affiliation-other" placeholder="If other, please specify" style="display: none;" />
 
-    <div class="submit-button">
-      <button type="submit">Submit</button>
+        <label>Job Role:</label>
+        <select name="job_role" id="job-role-select">
+          <option>Researcher / Scientist</option>
+          <option>R&amp;D Engineer</option>
+          <option>Faculty / Professor</option>
+          <option>PhD Student</option>
+          <option>Postdoctoral Researcher</option>
+          <option>Technical Manager / Lead</option>
+          <option>Other</option>
+        </select>
+        <input type="text" name="job_role_other" id="job-role-other" placeholder="If other, please specify" style="display: none;" />
+
+        <label>Years of Experience:</label>
+        <select name="experience">
+          <option>0–2 years</option>
+          <option>3–5 years</option>
+          <option>6–10 years</option>
+          <option>11–15 years</option>
+          <option>16+ years</option>
+        </select>
+
+        <label>Areas of Expertise:</label>
+        <div class="checkbox-group">
+          <label><input type="checkbox" name="expertise" value="motion_planning"> Robot motion planning</label>
+          <label><input type="checkbox" name="expertise" value="control"> Control systems</label>
+          <label><input type="checkbox" name="expertise" value="slam"> SLAM / Localization</label>
+          <label><input type="checkbox" name="expertise" value="ml"> Machine learning / AI</label>
+          <label><input type="checkbox" name="expertise" value="hri"> Human-robot interaction</label>
+          <label><input type="checkbox" name="expertise" value="navigation"> Autonomous navigation</label>
+          <label><input type="checkbox" name="expertise" value="manipulation"> Manipulation and grasping</label>
+          <label><input type="checkbox" name="expertise" value="uncertainty"> Uncertainty modeling</label>
+          <label><input type="checkbox" name="expertise" value="software"> Software engineering</label>
+          <label><input type="checkbox" name="expertise" value="testing"> Testing, validation, and safety</label>
+          <label><input type="checkbox" id="expertise-other-check" name="expertise" value="other"> Other</label>
+          <input type="text" name="expertise_other" id="expertise-other" placeholder="If other, please specify" style="display: none;" />
+        </div>
+
+        <label>Familiarity with Uncertainty-Aware Robotics:</label>
+        <select name="familiarity">
+          <option value="1">1 - Not familiar</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5 - Very familiar</option>
+        </select>
+
+        <div class="submit-button">
+          <button type="submit">Submit</button>
+        </div>
+      </form>
     </div>
-  </form>
+  </div>
 
   <script>
-    const affiliationSelect = document.getElementById('affiliation-select');
-    const affiliationOther = document.getElementById('affiliation-other');
-    affiliationSelect.addEventListener('change', () => {
-      affiliationOther.style.display = affiliationSelect.value === 'other' ? 'block' : 'none';
+    // Login Logic
+    document.getElementById('login-form').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      const response = await fetch('https://script.google.com/macros/s/AKfycbyT7yTMpe6ZhrX-lVuCsmZq2uvUSSg7a5dkVFj4Q1HgIU2E44HdBnFcK2QiRbi0H75A/exec', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password })
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        document.getElementById('login-section').style.display = 'none';
+        document.getElementById('form-section').style.display = 'block';
+      } else {
+        document.getElementById('error-msg').textContent = 'Invalid username or password';
+      }
     });
 
-    const jobRoleSelect = document.getElementById('job-role-select');
-    const jobRoleOther = document.getElementById('job-role-other');
-    jobRoleSelect.addEventListener('change', () => {
-      jobRoleOther.style.display = jobRoleSelect.value === 'Other' ? 'block' : 'none';
+    // Show/hide 'Other' fields
+    document.getElementById('affiliation-select').addEventListener('change', function () {
+      document.getElementById('affiliation-other').style.display = this.value === 'other' ? 'block' : 'none';
     });
 
-    const expertiseOtherCheckbox = document.getElementById('expertise-other-check');
-    const expertiseOtherInput = document.getElementById('expertise-other');
-    expertiseOtherCheckbox.addEventListener('change', () => {
-      expertiseOtherInput.style.display = expertiseOtherCheckbox.checked ? 'block' : 'none';
+    document.getElementById('job-role-select').addEventListener('change', function () {
+      document.getElementById('job-role-other').style.display = this.value === 'Other' ? 'block' : 'none';
     });
+
+    document.getElementById('expertise-other-check').addEventListener('change', function () {
+      document.getElementById('expertise-other').style.display = this.checked ? 'block' : 'none';
+    });
+
+    // Display login on load
+    document.getElementById('login-section').style.display = 'block';
   </script>
 </body>
 </html>
