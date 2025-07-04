@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Robotics Participant Background Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem;
+      background-color: #f4f4f9;
+    }
+    h1 {
+      text-align: center;
+    }
+    form {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+    input[type="text"], select, textarea {
+      width: 100%;
+      padding: 0.5rem;
+      margin-top: 0.25rem;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+    .checkbox-group label {
+      font-weight: normal;
+    }
+    .submit-button {
+      margin-top: 2rem;
+      text-align: center;
+    }
+    button {
+      padding: 0.75rem 1.5rem;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <h1>Participant Background Form</h1>
+  <form name="participant-form" method="POST" data-netlify="true">
+    <label>Affiliation:</label>
+    <select name="affiliation">
+      <option value="industry">Industry</option>
+      <option value="academia">Academia</option>
+      <option value="other">Other</option>
+    </select>
+
+    <label>Job Role:</label>
+    <select name="job_role">
+      <option>Researcher / Scientist</option>
+      <option>R&amp;D Engineer</option>
+      <option>Faculty / Professor</option>
+      <option>PhD Student</option>
+      <option>Postdoctoral Researcher</option>
+      <option>Technical Manager / Lead</option>
+      <option>Other</option>
+    </select>
+
+    <label>Years of Experience:</label>
+    <select name="experience">
+      <option>0–2 years</option>
+      <option>3–5 years</option>
+      <option>6–10 years</option>
+      <option>11–15 years</option>
+      <option>16+ years</option>
+    </select>
+
+    <label>Areas of Expertise:</label>
+    <div class="checkbox-group">
+      <label><input type="checkbox" name="expertise" value="motion_planning"> Robot motion planning</label><br>
+      <label><input type="checkbox" name="expertise" value="control"> Control systems</label><br>
+      <label><input type="checkbox" name="expertise" value="slam"> SLAM / Localization</label><br>
+      <label><input type="checkbox" name="expertise" value="ml"> Machine learning / AI</label><br>
+      <label><input type="checkbox" name="expertise" value="hri"> Human-robot interaction</label><br>
+      <label><input type="checkbox" name="expertise" value="navigation"> Autonomous navigation</label><br>
+      <label><input type="checkbox" name="expertise" value="manipulation"> Manipulation and grasping</label><br>
+      <label><input type="checkbox" name="expertise" value="uncertainty"> Uncertainty modeling</label><br>
+      <label><input type="checkbox" name="expertise" value="software"> Software engineering</label><br>
+      <label><input type="checkbox" name="expertise" value="testing"> Testing, validation, and safety</label><br>
+      <label><input type="checkbox" name="expertise" value="other"> Other</label>
+    </div>
+
+    <label>Familiarity with Uncertainty-Aware Robotics:</label>
+    <select name="familiarity">
+      <option value="1">1 - Not familiar</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5 - Very familiar</option>
+    </select>
+
+    <div class="submit-button">
+      <button type="submit">Submit</button>
+    </div>
+  </form>
+</body>
+</html>
