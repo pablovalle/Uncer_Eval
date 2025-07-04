@@ -33,8 +33,20 @@
       border-radius: 4px;
       border: 1px solid #ccc;
     }
+    .checkbox-group {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem 1rem;
+      margin-top: 0.5rem;
+    }
     .checkbox-group label {
       font-weight: normal;
+      display: flex;
+      align-items: center;
+    }
+    .checkbox-group input[type="text"] {
+      grid-column: span 2;
+      margin-top: 0;
     }
     .submit-button {
       margin-top: 2rem;
@@ -58,15 +70,15 @@
   <h1>Participant Background Form</h1>
   <form name="participant-form" method="POST" data-netlify="true">
     <label>Affiliation:</label>
-    <select name="affiliation">
+    <select name="affiliation" id="affiliation-select">
       <option value="industry">Industry</option>
       <option value="academia">Academia</option>
       <option value="other">Other</option>
     </select>
-    <input type="text" name="affiliation_other" placeholder="If other, please specify" />
+    <input type="text" name="affiliation_other" id="affiliation-other" placeholder="If other, please specify" style="display: none;" />
 
     <label>Job Role:</label>
-    <select name="job_role">
+    <select name="job_role" id="job-role-select">
       <option>Researcher / Scientist</option>
       <option>R&amp;D Engineer</option>
       <option>Faculty / Professor</option>
@@ -75,7 +87,7 @@
       <option>Technical Manager / Lead</option>
       <option>Other</option>
     </select>
-    <input type="text" name="job_role_other" placeholder="If other, please specify" />
+    <input type="text" name="job_role_other" id="job-role-other" placeholder="If other, please specify" style="display: none;" />
 
     <label>Years of Experience:</label>
     <select name="experience">
@@ -88,18 +100,18 @@
 
     <label>Areas of Expertise:</label>
     <div class="checkbox-group">
-      <label><input type="checkbox" name="expertise" value="motion_planning"> Robot motion planning</label><br>
-      <label><input type="checkbox" name="expertise" value="control"> Control systems</label><br>
-      <label><input type="checkbox" name="expertise" value="slam"> SLAM / Localization</label><br>
-      <label><input type="checkbox" name="expertise" value="ml"> Machine learning / AI</label><br>
-      <label><input type="checkbox" name="expertise" value="hri"> Human-robot interaction</label><br>
-      <label><input type="checkbox" name="expertise" value="navigation"> Autonomous navigation</label><br>
-      <label><input type="checkbox" name="expertise" value="manipulation"> Manipulation and grasping</label><br>
-      <label><input type="checkbox" name="expertise" value="uncertainty"> Uncertainty modeling</label><br>
-      <label><input type="checkbox" name="expertise" value="software"> Software engineering</label><br>
-      <label><input type="checkbox" name="expertise" value="testing"> Testing, validation, and safety</label><br>
-      <label><input type="checkbox" name="expertise" value="other"> Other</label>
-      <input type="text" name="expertise_other" placeholder="If other, please specify" />
+      <label><input type="checkbox" name="expertise" value="motion_planning"> Robot motion planning</label>
+      <label><input type="checkbox" name="expertise" value="control"> Control systems</label>
+      <label><input type="checkbox" name="expertise" value="slam"> SLAM / Localization</label>
+      <label><input type="checkbox" name="expertise" value="ml"> Machine learning / AI</label>
+      <label><input type="checkbox" name="expertise" value="hri"> Human-robot interaction</label>
+      <label><input type="checkbox" name="expertise" value="navigation"> Autonomous navigation</label>
+      <label><input type="checkbox" name="expertise" value="manipulation"> Manipulation and grasping</label>
+      <label><input type="checkbox" name="expertise" value="uncertainty"> Uncertainty modeling</label>
+      <label><input type="checkbox" name="expertise" value="software"> Software engineering</label>
+      <label><input type="checkbox" name="expertise" value="testing"> Testing, validation, and safety</label>
+      <label><input type="checkbox" id="expertise-other-check" name="expertise" value="other"> Other</label>
+      <input type="text" name="expertise_other" id="expertise-other" placeholder="If other, please specify" style="display: none;" />
     </div>
 
     <label>Familiarity with Uncertainty-Aware Robotics:</label>
@@ -115,5 +127,25 @@
       <button type="submit">Submit</button>
     </div>
   </form>
+
+  <script>
+    const affiliationSelect = document.getElementById('affiliation-select');
+    const affiliationOther = document.getElementById('affiliation-other');
+    affiliationSelect.addEventListener('change', () => {
+      affiliationOther.style.display = affiliationSelect.value === 'other' ? 'block' : 'none';
+    });
+
+    const jobRoleSelect = document.getElementById('job-role-select');
+    const jobRoleOther = document.getElementById('job-role-other');
+    jobRoleSelect.addEventListener('change', () => {
+      jobRoleOther.style.display = jobRoleSelect.value === 'Other' ? 'block' : 'none';
+    });
+
+    const expertiseOtherCheckbox = document.getElementById('expertise-other-check');
+    const expertiseOtherInput = document.getElementById('expertise-other');
+    expertiseOtherCheckbox.addEventListener('change', () => {
+      expertiseOtherInput.style.display = expertiseOtherCheckbox.checked ? 'block' : 'none';
+    });
+  </script>
 </body>
 </html>
