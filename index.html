@@ -6,153 +6,156 @@
   <title>Robotics Participant Form</title>
   <style>
     body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
-    margin: 0;
-    padding: 0;
-    }
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+  margin: 0;
+  padding: 0;
+}
 
-    .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    padding: 0 20px; /* Equal padding on both sides */
-    box-sizing: border-box;
-    }
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 0 20px; /* Equal padding on both sides */
+  box-sizing: border-box;
+}
 
-    .login-container,
-    .form-container,
-    #loginForm,
-    #quizContainer {
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+.login-container,
+.form-container,
+#loginForm,
+#quizContainer {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 800px;
+  padding: 30px 40px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  display: none; /* Set to block when needed */
+}
+
+h1, h2 {
+  text-align: center;
+}
+
+label {
+  display: block;
+  margin-top: 1rem;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="password"],
+select,
+textarea {
+  font-size: 1.1em;
+  padding: 10px;
+  width: 100%; /* Full width of container */
+  border-radius: 10px;
+  border: 1.5px solid #aaa;
+  margin-bottom: 20px;
+  transition: border-color 0.3s ease;
+  box-sizing: border-box;
+}
+
+.checkbox-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem 1rem;
+  margin-top: 0.5rem;
+}
+
+.checkbox-group label {
+  font-weight: normal;
+  display: flex;
+  align-items: center;
+}
+
+.checkbox-group input[type="text"] {
+  grid-column: span 2;
+  margin-top: 0;
+}
+
+.submit-button {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+button {
+  padding: 0.75rem 1.5rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+button.login-button {
+  font-size: 1.1em;
+  font-weight: 600;
+  padding: 12px 28px;
+  margin: 10px auto;
+  display: block;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 6px 15px rgba(100, 100, 100, 0.15);
+  transition: all 0.3s ease;
+  transform: scale(1);
+  color: #444;
+  background: linear-gradient(145deg, #d3d3d3, #a9a9a9);
+}
+
+button.login-button:hover {
+  box-shadow: 0 8px 18px rgba(80, 80, 80, 0.25);
+  transform: scale(1.05);
+  background: linear-gradient(145deg, #c2c2c2, #999999);
+}
+
+.error {
+  color: red;
+  margin-top: 1rem;
+  text-align: center;
+}
+.login-container,
+#loginForm {
+  display: block;
+}
+.spinner {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border: 3px solid rgba(0,0,0,0.2);
+  border-radius: 50%;
+  border-top-color: #3498db;
+  animation: spin 1s ease-in-out infinite;
+  vertical-align: middle;
+  margin-right: 6px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (max-width: 650px) {
+  video {
+    width: 95%;
+  }
+  input {
     width: 100%;
-    max-width: 800px;
-    padding: 30px 40px;
-    margin: 0 auto;
-    box-sizing: border-box;
-    display: none; /* Set to block when needed */
-    }
-
-    h1, h2 {
-    text-align: center;
-    }
-
-    label {
-    display: block;
-    margin-top: 1rem;
-    font-weight: bold;
-    }
-
-    input[type="text"],
-    input[type="password"],
-    select,
-    textarea {
-    font-size: 1.1em;
-    padding: 10px;
-    width: 100%; /* Full width of container */
-    border-radius: 10px;
-    border: 1.5px solid #aaa;
-    margin-bottom: 20px;
-    transition: border-color 0.3s ease;
-    box-sizing: border-box;
-    }
-
-    .checkbox-group {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.5rem 1rem;
-    margin-top: 0.5rem;
-    }
-
-    .checkbox-group label {
-    font-weight: normal;
-    display: flex;
-    align-items: center;
-    }
-
-    .checkbox-group input[type="text"] {
-    grid-column: span 2;
-    margin-top: 0;
-    }
-
-    .submit-button {
-    margin-top: 2rem;
-    text-align: center;
-    }
-
-    button {
-    padding: 0.75rem 1.5rem;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    font-size: 1rem;
-    cursor: pointer;
-    }
-
-    button:hover {
-    background-color: #0056b3;
-    }
-
-    button.login-button {
-    font-size: 1.1em;
-    font-weight: 600;
-    padding: 12px 28px;
-    margin: 10px auto;
-    display: block;
-    border: none;
-    border-radius: 12px;
-    cursor: pointer;
-    box-shadow: 0 6px 15px rgba(100, 100, 100, 0.15);
-    transition: all 0.3s ease;
-    transform: scale(1);
-    color: #444;
-    background: linear-gradient(145deg, #d3d3d3, #a9a9a9);
-    }
-
-    button.login-button:hover {
-    box-shadow: 0 8px 18px rgba(80, 80, 80, 0.25);
-    transform: scale(1.05);
-    background: linear-gradient(145deg, #c2c2c2, #999999);
-    }
-
-    .error {
-    color: red;
-    margin-top: 1rem;
-    text-align: center;
-    }
-
-    .spinner {
-    display: inline-block;
-    width: 18px;
-    height: 18px;
-    border: 3px solid rgba(0,0,0,0.2);
-    border-radius: 50%;
-    border-top-color: #3498db;
-    animation: spin 1s ease-in-out infinite;
-    vertical-align: middle;
-    margin-right: 6px;
-    }
-
-    @keyframes spin {
-    to { transform: rotate(360deg); }
-    }
-
-    @media (max-width: 650px) {
-    video {
-        width: 95%;
-    }
-    input {
-        width: 100%;
-    }
-    .answers button {
-        flex: 1 1 100%;
-        max-width: none;
-    }
-    }
+  }
+  .answers button {
+    flex: 1 1 100%;
+    max-width: none;
+  }
+}
 
   </style>
 </head>
