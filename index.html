@@ -303,6 +303,66 @@ button.login-button:hover {
 
     // Display login on load
     document.getElementById('login-section').style.display = 'block';
+
+    function submitParticipantForm() {
+        const username = document.getElementById('usernameInput').value.trim();
+        const form = document.forms['participant-form'];
+
+        // Get individual form values
+        const affiliation = form.affiliation.value;
+        const affiliation_other = form.affiliation_other.value.trim();
+        const job_role = form.job_role.value;
+        const job_role_other = form.job_role_other.value.trim();
+        const experience = form.experience.value;
+        const familiarity = form.familiarity.value;
+        const expertise_other = form.expertise_other.value.trim();
+
+        // Gather expertise checkboxes (may be multiple)
+        const expertiseValues = Array.from(
+        form.querySelectorAll('input[name="expertise"]:checked')
+        ).map(checkbox => checkbox.value);
+
+        // Create URL-encoded parameters
+        const data = new URLSearchParams();
+        data.append('username', username);
+        data.append('affiliation', affiliation);
+        data.append('affiliation_other', affiliation_other);
+        data.append('job_role', job_role);
+        data.append('job_role_other', job_role_other);
+        data.append('experience', experience);
+        data.append('familiarity', familiarity);
+        data.append('expertise_other', expertise_other);
+        data.append('timestamp', new Date().toISOString());
+
+        // Add expertise[] as separate entries
+        expertiseValues.forEach(val => {
+        data.append('expertise', val);
+        });
+
+        // Send GET request to Apps Script
+        fetch(`https://script.google.com/macros/s/AKfycbz8P7yIcvhngPHpRPUI45g866YFK_o5AI6-dT8abfgJCofP5Us0W-neYSkKERDL8jcV/exec?${data.toString()}`, {
+        method: 'GET',
+        mode: 'cors',
+        })
+        .then(response => response.text())
+        .then(result => {
+        console.log('✅ Form submitted:', result);
+        alert("Form submitted successfully!");
+        form.reset();
+        })
+        .catch(error => {
+        console.error('❌ Submission error:', error);
+        alert("Submission failed.");
+        });
+    }
+
+    // Attach submit handler to form
+    document.forms["participant-form"].addEventListener("submit", function (e) {
+        e.preventDefault();
+        submitParticipantForm();
+    });
+</script>
+
   </script>
 </body>
 </html>
