@@ -235,7 +235,7 @@ button.login-button:hover {
         </select>
 
         <div class="submit-button">
-          <button type="submit">Submit</button>
+          <button type="submit" onclick="submitParticipantForm()">Submit</button>
         </div>
       </form>
     </div>
@@ -355,12 +355,6 @@ button.login-button:hover {
         alert("Submission failed.");
         });
     }
-
-    // Attach submit handler to form
-    document.forms["participant-form"].addEventListener("submit", function (e) {
-        e.preventDefault();
-        submitParticipantForm();
-    });
 </script>
 
   </script>
